@@ -1,0 +1,86 @@
+---
+title: 'User'
+description: 'Get users accross both server and client'
+icon: 'code'
+---
+
+## Get the current user server-side
+
+```tsx
+"use server"
+
+import { currentUser } from "@/lib/auth";
+
+const Component = () => {
+  const user = useCurrentUser();
+};
+```
+
+The user object returned server-side:
+
+```tsx
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "image": "https://example.com/image-placeholder.png",
+  "id": "dummyUserId1234567890",
+  "role": "USER",
+  "accounts": [
+    {
+      "id": "dummyAccountId0987654321",
+      "userId": "dummyUserId1234567890",
+      "type": "oidc",
+      "provider": "google",
+      "providerAccountId": "dummyProviderId1234567890",
+      "refresh_token": "dummyRefreshToken1234567890",
+      "access_token": "dummyAccessToken1234567890",
+      "expires_at": 1718729381,
+      "token_type": "bearer",
+      "scope": "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
+      "id_token": "dummyIdToken1234567890",
+      "session_state": null
+    }
+  ]
+}
+```
+
+## Get the current user client-side
+
+```tsx
+"use client"
+
+import { useCurrentUser } from "@/hooks/use-current-user";
+
+const Component = () => {
+  const user = useCurrentUser();
+};
+```
+
+The user object returned client-side:
+
+```tsx
+// client:
+{
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "image": "https://example.com/profile.jpg",
+    "id": "dummy12345",
+    "role": "USER",
+    "accounts": [
+        {
+            "id": "account12345",
+            "userId": "dummy12345",
+            "type": "oidc",
+            "provider": "google",
+            "providerAccountId": "123456789012345678901",
+            "refresh_token": "1//0dummyRefreshTokenExample123456",
+            "access_token": "ya29.a0AXdummyAccessTokenExample123456",
+            "expires_at": 1718729381,
+            "token_type": "bearer",
+            "scope": "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
+            "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNkNTgwZjBhZjdhY2U2OThhMGNlZTdmMjMwYmNhNTk0ZGM2ZGJiNTUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI1MDMyNjMyODEzMzEtNnBmdWR2c2o4MzY1bXFqcXA2NGo2M2d1OHZmM2wxdXAuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI1MDMyNjMyODEzMzEtNnBmdWR2c2o4MzY1bXFqcXA2NGo2M2d1OHZmM2wxdXAuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMyIsImVtYWlsIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXdfaGFzaCI6ImR1bXlIYXNoRXhhbXBsZTEyMyIsIm5hbWUiOiJKb2huIERvZSIsInBpY3R1cmUiOiJodHRwczovL2V4YW1wbGUuY29tL3Byb2ZpbGUuanBnIiwiZ2l2ZW5fbmFtZSI6IkpvaG4iLCJmYW1pbHlfbmFtZSI6IkRvZSIsImlhdCI6MTcxODcyNTc4MiwicmV4cCI6MTcxODcyOTM4Mn0.dummyIdTokenExample123456",
+            "session_state": null
+        }
+    ]
+}
+```

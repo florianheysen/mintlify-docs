@@ -1,0 +1,19 @@
+---
+title: 'Site Config'
+description: 'Change base config like name, description, max free views or prices'
+icon: 'code'
+---
+
+You can change the config in this file, it will be populated across the app:
+
+
+```tsx config/site.ts
+export const siteConfig = {
+  name: "Brink",
+  description: "Collaborate, manage projects, and reach new productivity peaks",
+};
+
+export const MAX_FREE_VIEWS = 4;
+export const PRO_SUBSCRIPTION_PRICE = 2000;
+
+```
